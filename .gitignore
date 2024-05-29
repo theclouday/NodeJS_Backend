@@ -1,7 +1,8 @@
+# Игнорировать папку node_modules
+node_modules/
+
+# Игнорировать файлы логов
 *.log
 
-node_modules/
+# Игнорировать билд директорию
 dist/
-
-
-package-lock.json
