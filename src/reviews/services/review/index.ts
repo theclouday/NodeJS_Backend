@@ -11,19 +11,37 @@ export const createReview = async (
     return (review._id as string);
 };
 
+export const getReviewsForBook = async ( 
+    bookId: string, 
+    size: number, 
+    from: number,
+) => {
+    const bookExist = await checkBookExist(bookId);
+    if(!bookExist) {
+        throw new Error("Book does not exist");
+    }
+
+    const reviews = await Review.find({ bookId: bookId })
+        .sort({ createdAt: -1 })
+        .skip(from)
+        .limit(size)
+        .exec();
+    
+    return reviews;
+};
 
 export const validateReview = async (reviewDto: ReviewSaveDto) => {
-    if(!reviewDto.title) {
-        throw new Error("Title is required");
+    if(!reviewDto.title || typeof reviewDto.title !== 'string') {
+        throw new Error("Title is required and must be a non-numeric string");
     }
     if(!reviewDto.text) {
         throw new Error("Text is required");
     }
-    if(!reviewDto.author) {
-        throw new Error("Author is required");
+    if(!reviewDto.author || typeof reviewDto.author !== 'string') {
+        throw new Error("Author is required and must be a non-numeric string");
     }
-    if(!reviewDto.grade) {
-        throw new Error("Grade is required");
+    if(!reviewDto.grade || typeof reviewDto.grade !== 'number') {
+        throw new Error("Grade is required and must be a number");
     }else if(reviewDto.grade <0 || reviewDto.grade > 10) {
         throw new Error("The grade should be in the range of 0 to 10 inclusive");
     }
