@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import axios from 'axios';
-import Review from '../../model/review';
-import { ReviewSaveDto } from '../../dto/review/reviewSaveDto';
+import Review from '../model/review';
+import { ReviewSaveDto } from '../dto/review/reviewSaveDto';
+
 
 export const createReview = async (
     reviewDto: ReviewSaveDto
