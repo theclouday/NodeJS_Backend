@@ -3,11 +3,11 @@ import { Request, Response } from 'express';
 import { createReview as createReviewApi,
          getReviewsForBook as getReviewsForBookApi,
          getReviewCounts as getReviewCountsApi
- } from '../../services/review';
-import { ReviewSaveDto } from '../../dto/review/reviewSaveDto';
-import { QueryDto } from '../../dto/queryDto';
-import { BookIdsDto } from '../../dto/review/bookIdsDto';
-import { InternalError } from '../../../system/internallError';
+ } from '../services';
+import { ReviewSaveDto } from '../dto/review/reviewSaveDto';
+import { QueryDto } from '../dto/queryDto';
+import { BookIdsDto } from '../dto/review/bookIdsDto';
+import { InternalError } from '../../system/internallError';
 
 export const saveReview = async (req: Request, res: Response) => {
     try {

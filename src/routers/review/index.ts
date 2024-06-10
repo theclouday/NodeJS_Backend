@@ -2,7 +2,7 @@ import express from 'express';
 import { saveReview,
          getReviews,
          getReviewCounts
- } from '../../reviews/controller/review';
+ } from '../../reviews/controller'; 
 
 const router = express.Router();
 
