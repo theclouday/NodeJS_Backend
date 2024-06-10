@@ -25,7 +25,7 @@ export const saveReview = async (req: Request, res: Response) => {
 export const getReviews = async (req: Request, res: Response) => {
     try {
         const queryDto = new QueryDto(req.query);
-        const reviews = await getReviewsForBookApi(req.params.bookId, queryDto.size, queryDto.from);
+        const reviews = await getReviewsForBookApi(req.body.bookId, queryDto.size, queryDto.from);
         res.status(200).send(reviews);
     } catch (error) {
         const { message, status } = new InternalError(error);

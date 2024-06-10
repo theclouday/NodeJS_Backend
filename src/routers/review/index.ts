@@ -6,6 +6,6 @@ import { saveReview,
 const router = express.Router();
 
 router.post('', saveReview);
-router.get('', getReviews)
+router.get('', getReviews);
 
 export default router;
