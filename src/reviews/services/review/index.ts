@@ -30,6 +30,20 @@ export const getReviewsForBook = async (
     return reviews;
 };
 
+export const getReviewCounts = async (bookIds: string[]) => {
+    const reviewCounts = await Review.aggregate([
+        { $match: { bookId: { $in: bookIds } } },
+        { $group: { _id: "$bookId", count: { $sum: 1 } } }
+    ]);
+
+    const response: { [key: string]: number } = {};
+    reviewCounts.forEach(reviewCount => {
+        response[reviewCount._id] = reviewCount.count;
+    });
+
+    return response;
+};
+
 export const validateReview = async (reviewDto: ReviewSaveDto) => {
     if(!reviewDto.title || typeof reviewDto.title !== 'string') {
         throw new Error("Title is required and must be a non-numeric string");
