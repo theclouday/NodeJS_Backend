@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
+import axios from 'axios';
 import Review from '../../model/review';
 import { ReviewSaveDto } from '../../dto/review/reviewSaveDto';
-import axios from 'axios';
 
 export const createReview = async (
     reviewDto: ReviewSaveDto
@@ -13,8 +13,8 @@ export const createReview = async (
 
 export const getReviewsForBook = async ( 
     bookId: string, 
-    size: number, 
-    from: number,
+    size: number,
+    from: number
 ) => {
     const bookExist = await checkBookExist(bookId);
     if(!bookExist) {
