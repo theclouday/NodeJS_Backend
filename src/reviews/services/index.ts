@@ -18,6 +18,7 @@ export const getReviewsForBook = async (
     from: number
 ) => {
     const bookExist = await checkBookExist(bookId);
+    
     if(!bookExist) {
         throw new Error("Book does not exist");
     }
